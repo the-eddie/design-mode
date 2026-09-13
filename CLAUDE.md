@@ -131,9 +131,10 @@ tool), these rules are read automatically at session start.
   of this anyway; the explicit `content_security_policy` block in
   `manifest.json` is defense in depth.
 - **No new outbound network calls without an explicit setting AND a
-  note in PRIVACY.md.** Fresh installs select Cloud MCP, while Local mode is
-  localhost-only; any new service still requires a deliberate user-controlled
-  configuration path.
+  note in PRIVACY.md.** Fresh installs select Local MCP, which is
+  localhost-only, so nothing leaves the machine until the user opts into
+  Cloud or Self-hosted; any new service still requires a deliberate
+  user-controlled configuration path.
 - **No new manifest permissions without a justification.** The
   current set (activeTab, storage, scripting, tabs, sidePanel,
   host_permissions: <all_urls>) is what's reviewed by the Chrome
@@ -182,10 +183,13 @@ tool), these rules are read automatically at session start.
 
 ## MCP modes + agent presence
 
-- **Three modes**: **Cloud (default)**, **Local**, **Self-hosted**.
-  Fresh installs land on Cloud. Existing users keep whatever
-  `dm-mcp-mode` was stored. UI order in the Settings picker and
-  on the website's `/mcp` page is Cloud · Local · Self-hosted.
+- **Three modes**: **Local (default)**, **Cloud**, **Self-hosted**.
+  Fresh installs land on Local. Existing users keep whatever
+  `dm-mcp-mode` was stored. The default lives in two places that have to
+  stay in sync: the `mcpMode` initialiser in `sidepanel.ts` and the
+  `openConfiguredTransport` fallback in `content/index.ts`. UI order in
+  the Settings picker and on the website's `/mcp` page is unchanged:
+  Cloud · Local · Self-hosted.
 - **Three-state `mcpState`** (`packages/extension/src/sidepanel/sidepanel.ts`):
   - `offline` — transport (WS / SSE) is down.
   - `running` — transport up, no agent activity seen recently.

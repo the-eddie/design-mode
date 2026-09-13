@@ -20,9 +20,9 @@ actively inspect.
 ## What leaves your machine
 
 The extension sends data only through the MCP mode you configure. Fresh
-installs select Cloud; existing installs retain their saved mode. Cloud and
-Self-hosted need a configured relay and bearer token. Local mode talks only to
-your machine.
+installs select Local, which talks only to your machine; existing installs
+retain their saved mode. Cloud and Self-hosted are opt-in and need a
+configured relay and bearer token.
 
 Local browser operations:
 

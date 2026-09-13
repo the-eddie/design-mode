@@ -588,7 +588,7 @@ let mcpAutoConnect = true;
 // Cloud / self-hosted MCP. Mode picks where the extension dials; the
 // other three are only meaningful when mode !== 'local'.
 type McpMode = 'local' | 'cloud' | 'self-hosted';
-let mcpMode: McpMode = 'cloud';
+let mcpMode: McpMode = 'local';
 let mcpCloudToken = '';
 let mcpCloudUrl = 'https://mcp.designmode.app';
 let mcpCloudTenantId = '';

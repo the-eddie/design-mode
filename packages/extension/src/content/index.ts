@@ -700,7 +700,7 @@ setUnhandledMessageHandler(dispatchCloudMessage);
 async function openConfiguredTransport() {
   try {
     const conf = await browser.storage.local.get(['dm-mcp-mode', 'dm-mcp-port', 'dm-mcp-cloud-token', 'dm-mcp-cloud-url']);
-    const mode = (conf['dm-mcp-mode'] as 'local' | 'cloud' | 'self-hosted' | undefined) || 'cloud';
+    const mode = (conf['dm-mcp-mode'] as 'local' | 'cloud' | 'self-hosted' | undefined) || 'local';
     if (mode === 'local') {
       const port = typeof conf['dm-mcp-port'] === 'number' ? conf['dm-mcp-port'] : DEFAULT_WS_PORT;
       connectToServer({ mode: 'local', port });
